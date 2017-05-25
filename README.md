@@ -1,4 +1,4 @@
-# fisher21cm
+# Fisher21cm
 
 This is the repo for the Baryon Mapping eXperiment Fisher forecast for a general 21cm experiment.
 
