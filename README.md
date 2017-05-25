@@ -4,22 +4,24 @@ This is the repo for the Baryon Mapping eXperiment Fisher forecast for a general
 
 ## Modules
 
-*'parameters.py' - The cosmological parameters in our eight parameter model.
+`parameters.py` - The cosmological parameters in our eight parameter model.
 
-*'power_spectrum.py' - Computes the matter power spectrum 
-\[P(k_{\parallel},k_{\perp})=b^2(1+\beta\mu^2)^2P_L(k_T),\]
-where $\beta=f/b$, $f$ is the growth rate, $b$ is the bias, and $\mu=\cos\theta=\cos(k_{\parallel}/k_T)$
+`power_spectrum.py` - Computes the matter power spectrum 
 
-*'fisher_calc.py' - Computes the Fisher matrix
-\[\begin{split}
+\P(k_{\parallel},k_{\perp})=b^2(1+\beta\mu^2)^2P_L(k_T),
+
+where \beta=f/b, f is the growth rate, b is the bias, and \mu=\cos\theta=\cos(k_{\parallel}/k_T).
+
+`fisher_calc.py` - Computes the Fisher matrix
+
 F_{ij}=\sum_{k_{\parallel},k_{\perp},z}\frac{\partial P(k_{\parallel},k_{\perp})}{\partial \theta_i}\frac{\partial P(k_{\parallel},k_{\perp})}{\partial \theta_j}\frac{1}{(\Delta P)^2}\\
  = \sum_{k_{\parallel},k_{\perp},z}\frac{\partial \ln P(k_{\parallel},k_{\perp})}{\partial \theta_i}\frac{\partial \ln P(k_{\parallel},k_{\perp})}{\partial \theta_j}(\text{SNR})^2.\\
-\end{split}\]
+
 Here, the signal-to-noise ratio (SNR) is computed in a simulation from Cosmic Visions:
 - [SNR Data Cube from Cosmic Visions](http://www.phas.ubc.ca/~richard/sn_lowz_expA_50K.h5)
 - [Cosmic Visions Fisher repo](https://github.com/radiohep/CVFisher)
 
-*'fisher_analysis.py' - Computes the covariance matrix and creates triangle plots of 2D marginalized error ellipses and 1D marginalized Gaussians.  Can combine Fisher matrices to compare experiments.
+`fisher_analysis.py` - Computes the covariance matrix and creates triangle plots of 2D marginalized error ellipses and 1D marginalized Gaussians.  Can combine Fisher matrices to compare experiments.
 
 ## Requirements
 - numpy
