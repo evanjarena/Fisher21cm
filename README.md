@@ -1,6 +1,6 @@
 # Fisher21cm
 
-This is the repo for the Baryon Mapping eXperiment Fisher forecast for a general 21cm experiment.
+This is the repo for the Baryon Mapping eXperiment (BMX) Fisher forecast for a general 21cm experiment.
 
 ## Modules
 
@@ -22,6 +22,9 @@ Here, the signal-to-noise ratio (SNR) is computed in a simulation from Cosmic Vi
 - [Cosmic Visions Fisher repo](https://github.com/radiohep/CVFisher)
 
 `fisher_analysis.py` - Computes the covariance matrix and creates triangle plots of 2D marginalized error ellipses and 1D marginalized Gaussians.  Can combine Fisher matrices to compare experiments.
+
+
+`fisherS4_pickler.py` Takes the CMBS4 Fisher matrix given in 'fisherS4.txt' and pickeles it.  This is used in fisher_analysis.py.
 
 ## Requirements
 - numpy
