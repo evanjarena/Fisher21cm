@@ -24,7 +24,7 @@ Here, the signal-to-noise ratio (SNR) is computed in a simulation from Cosmic Vi
 `fisher_analysis.py` - Computes the covariance matrix and creates triangle plots of 2D marginalized error ellipses and 1D marginalized Gaussians.  Can combine Fisher matrices to compare experiments.
 
 
-`fisherS4_pickler.py` Takes the CMBS4 Fisher matrix given in 'fisherS4.txt' and pickeles it.  This is used in fisher_analysis.py.
+`fisherS4_pickler.py` Takes the CMBS4 Fisher matrix given in 'fisherS4.txt' and creates the pickle file 'fisherS4_matrix.p'.  This is used in fisher_analysis.py.
 
 ## Requirements
 - numpy
