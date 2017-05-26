@@ -44,6 +44,16 @@ class FisherAnalysis(object):
         self.Ncms=len(covariance_matrices)
         return self.cms
 
+    def error(self, covariance_matrix):
+        """Computes the marginalized 1-sigma uncertainty on each parameter
+        """
+        errors=[]
+        for i in range(self.Np):
+            err=np.sqrt(covariance_matrix[i,i])
+            errors.append(err)
+        return errors
+        
+
     def marginalize(self, covariance_matrix, i, j):
         """Compute and return a new covariance matrix after marginalizing over all
         other parameters not in the list param_list
@@ -153,7 +163,11 @@ class FisherAnalysis(object):
                     
                     # Make ticks visible and make sure they are not too crowded
                     axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
-                    axis.tick_params(labelsize=8)
+                    for label in axis.get_xticklabels():
+                        label.set_rotation(-90) 
+                    axis.tick_params(labelsize=8)                       # Tick values
+                    axis.yaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
+                    axis.xaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
                     if i != 0:
                         for tick in axis.yaxis.get_major_ticks():
                             tick.label1.set_visible(False)
@@ -173,8 +187,12 @@ class FisherAnalysis(object):
                     if (i>=0):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
 
-                    axis.ticklabel_format(style='sci', axis='x', scilimits=(-3,3))
-                    axis.tick_params(labelsize=8)
+                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
+                    for label in axis.get_xticklabels():
+                        label.set_rotation(-90) 
+                    axis.tick_params(labelsize=8)                       # Tick values
+                    axis.yaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
+                    axis.xaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
                     if i != 0:
                         for tick in axis.yaxis.get_major_ticks():
                             tick.label1.set_visible(False)
@@ -242,7 +260,11 @@ class FisherAnalysis(object):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
 
                     axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
-                    axis.tick_params(labelsize=8)
+                    for label in axis.get_xticklabels():
+                        label.set_rotation(-90) 
+                    axis.tick_params(labelsize=8)                       # Tick values
+                    axis.yaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
+                    axis.xaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
                     if i != 0:
                         for tick in axis.yaxis.get_major_ticks():
                             tick.label1.set_visible(False)
@@ -263,8 +285,12 @@ class FisherAnalysis(object):
                     if (i>=0):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
 
-                    axis.ticklabel_format(style='sci', axis='x', scilimits=(-3,3))
-                    axis.tick_params(labelsize=8)
+                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
+                    for label in axis.get_xticklabels():
+                        label.set_rotation(-90) 
+                    axis.tick_params(labelsize=8)                       # Tick values
+                    axis.yaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
+                    axis.xaxis.get_offset_text().set_fontsize(8)        # Scientific notation floats
                     if i != 0:
                         for tick in axis.yaxis.get_major_ticks():
                             tick.label1.set_visible(False)
@@ -316,9 +342,16 @@ FisherAnalysis(P,N).plot_error_matrix_combined(C_21cm_vs_S4, '21cm_vs_CMBS4_tria
 #Plot of 21cm vs 21cm+CMBS4
 C_21cm_and_C_S4=FisherAnalysis(P,N).covariance(F_21cm+F_S4)
 C_21cm_vs_C_21cm_and_S4=FisherAnalysis(P,N).covariance_array(C_21cm, C_21cm_and_C_S4)
+#C_21cm_vs_C_21cm_and_S4=FisherAnalysis(P,N).covariance_array(C_21cm_and_C_S4, C_21cm)
 FisherAnalysis(P,N).plot_error_matrix_combined(C_21cm_vs_C_21cm_and_S4, '21cm_vs_21cmCMBS4_triangle')
 
 #Plot of CMBS4 vs 21cm+CMBS4
 C_21cm_and_C_S4=FisherAnalysis(P,N).covariance(F_21cm+F_S4)
 C_S4_vs_C_21cm_and_S4=FisherAnalysis(P,N).covariance_array(C_S4, C_21cm_and_C_S4)
 FisherAnalysis(P,N).plot_error_matrix_combined(C_S4_vs_C_21cm_and_S4, 'CMBS4_vs_21cmCMBS4_triangle')
+
+# Get 1-sigma errors
+print FisherAnalysis(P,N).error(C_21cm)             # 21cm alone
+print FisherAnalysis(P,N).error(C_S4)               # CMBS4 alone
+print FisherAnalysis(P,N).error(C_21cm_and_C_S4)    # 21cm + CMBS4 
+
