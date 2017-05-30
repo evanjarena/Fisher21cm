@@ -162,7 +162,7 @@ class FisherAnalysis(object):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
                     
                     # Make ticks visible and make sure they are not too crowded
-                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
+                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3), useOffset=False)
                     for label in axis.get_xticklabels():
                         label.set_rotation(-90) 
                     axis.tick_params(labelsize=8)                       # Tick values
@@ -187,7 +187,7 @@ class FisherAnalysis(object):
                     if (i>=0):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
 
-                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
+                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3), useOffset=False)
                     for label in axis.get_xticklabels():
                         label.set_rotation(-90) 
                     axis.tick_params(labelsize=8)                       # Tick values
@@ -259,7 +259,7 @@ class FisherAnalysis(object):
                     if (i>=0):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
 
-                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
+                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3), useOffset=False)
                     for label in axis.get_xticklabels():
                         label.set_rotation(-90) 
                     axis.tick_params(labelsize=8)                       # Tick values
@@ -285,7 +285,7 @@ class FisherAnalysis(object):
                     if (i>=0):
                         axis.set_xlabel(self.param_names[i], fontsize=14)
 
-                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3))
+                    axis.ticklabel_format(style='sci', axis='both', scilimits=(-3,3), useOffset=False)
                     for label in axis.get_xticklabels():
                         label.set_rotation(-90) 
                     axis.tick_params(labelsize=8)                       # Tick values

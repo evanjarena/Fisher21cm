@@ -20,6 +20,9 @@ snr=[]
 for i in range(9):
     csnr=da['sn_band_'+str(i)].value
     snr.append(csnr)
+snr=np.array(snr)
+# There are four effective dishes
+snr=4.*snr
 
 # Comoving wave numbers
 ks=da['k_bin'].value
@@ -72,22 +75,6 @@ for zi in range(Nz):
             Fc[i,j]=(ders[i][zi,:,:]*ders[j][zi,:,:]*snr[zi]**2.).sum()
             Fc[j,i]=Fc[i,j]
     Ft+=Fc
-
-"""
-#Now find the Fisher and covariance matrices
-for zi in range(Nz):
-    Fc=np.zeros((Np,Np))
-    for i in range(Np):
-        for j in range(Np):
-            if (j<i):
-                #Fc[i,j]=(ders[i][zi,:,:]*ders[j][zi,:,:]*snr[zi]**2.).sum()
-                Fc[i,j]=(ders[i][zi]*ders[j][zi]*snr[zi]**2.).sum()
-                Fc[j,i]=Fc[i,j]
-    #Fz.append(Fc)
-    #covariance=np.linalg.inv(Fz)
-    Ft+=Fc
-"""
-
 
 # Save Fisher matrix to a .txt file for quick glance
 # Let delimieter be & in order to more easily put matrix in LaTeX Tabular environment
