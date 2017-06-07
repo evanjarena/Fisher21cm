@@ -21,8 +21,6 @@ for i in range(9):
     csnr=da['sn_band_'+str(i)].value
     snr.append(csnr)
 snr=np.array(snr)
-# There are four effective dishes
-snr=4.*snr
 
 # Comoving wave numbers
 ks=da['k_bin'].value

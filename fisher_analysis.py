@@ -24,11 +24,14 @@ class FisherAnalysis(object):
         self.alphas = [0.75, 0.35, 1.0, 0.35]
 
     def import_fisher(self, filename):
-        """ Import a saved fisher matrix using pickle
+        """ Import a saved fisher matrix using pickle.
+        Then compute the covariance matrix, marginalize over any bias
+        parameters in the matrix, and return the NpxNp Fisher matrix.
         """
         self.fisher_matrix=pickle.load(open(filename, 'rb'))
-        # Cut out bias parameters (if any)
-        self.fisher_matrix=self.fisher_matrix[0:self.Np,0:self.Np]
+        cov=np.linalg.inv(self.fisher_matrix)
+        cov=cov[0:self.Np,0:self.Np]
+        self.fisher_matrix=np.linalg.inv(cov)
         return self.fisher_matrix
 
     def covariance(self, fisher_matrix):
@@ -342,7 +345,6 @@ FisherAnalysis(P,N).plot_error_matrix_combined(C_21cm_vs_S4, '21cm_vs_CMBS4_tria
 #Plot of 21cm vs 21cm+CMBS4
 C_21cm_and_C_S4=FisherAnalysis(P,N).covariance(F_21cm+F_S4)
 C_21cm_vs_C_21cm_and_S4=FisherAnalysis(P,N).covariance_array(C_21cm, C_21cm_and_C_S4)
-#C_21cm_vs_C_21cm_and_S4=FisherAnalysis(P,N).covariance_array(C_21cm_and_C_S4, C_21cm)
 FisherAnalysis(P,N).plot_error_matrix_combined(C_21cm_vs_C_21cm_and_S4, '21cm_vs_21cmCMBS4_triangle')
 
 #Plot of CMBS4 vs 21cm+CMBS4
