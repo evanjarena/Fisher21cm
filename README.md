@@ -26,7 +26,7 @@ in order to run the Fisher forecast with either the CLASS or CAMB Boltzmann code
 
 * `ParameterVec.py`: Holds the cosmological parameters.
 
-* `FisherMat.py': Fisher Matrix class.
+* `FisherMat.py`: Fisher Matrix class.
 
 * `TracerPk.py`: Matrix for a tracer measuring the matter power spectrum.
 
