@@ -1,35 +1,46 @@
 # Fisher21cm
 
-This is the repo for the Baryon Mapping eXperiment (BMX) Fisher forecast for a general 21cm experiment.
+Fisher forecast for a general 21cm experiment.
+
+## Required Packages
+
+* numpy
+* scipy
+* matplotlib
+* h5py
+* pickle
+* SNR data cube from Cosmic Visions (optional, see below)
+* CLASS and/or CAMB Boltzmann codes:
+   * [CLASS code and its python wrapper classy](http://class-code.net/)
+   * [CAMB code and its python wrapper](http://camb.info)
 
 ## Modules
 
-`parameters.py` - The cosmological parameters in our eight parameter model.
+Modules should be run from the parent directory, e.g.:
+  `python py/21cm.py Class`
+or
+  `python py/21cm.py Camb`
+in order to run the Fisher forecast with either the CLASS or CAMB Boltzmann codes.
 
-`power_spectrum.py` - Computes the matter power spectrum 
+* `21cm.py`: Details for a generalized 21cm experiment.  The default is a BMX-type experiment, but the user can replace this module with any general experiemnt. 
 
-\P(k_{\parallel},k_{\perp})=b^2(1+\beta\mu^2)^2P_L(k_T),
+* `ParameterVec.py`: Holds the cosmological parameters.
 
-where \beta=f/b, f is the growth rate, b is the bias, and \mu=\cos\theta=\cos(k_{\parallel}/k_T).
+* `FisherMat.py': Fisher Matrix class.
 
-`fisher_calc.py` - Computes the Fisher matrix
+* `TracerPk.py`: Matrix for a tracer measuring the matter power spectrum.
 
-F_{ij}=\sum_{k_{\parallel},k_{\perp},z}\frac{\partial P(k_{\parallel},k_{\perp})}{\partial \theta_i}\frac{\partial P(k_{\parallel},k_{\perp})}{\partial \theta_j}\frac{1}{(\Delta P)^2}\\
- = \sum_{k_{\parallel},k_{\perp},z}\frac{\partial \ln P(k_{\parallel},k_{\perp})}{\partial \theta_i}\frac{\partial \ln P(k_{\parallel},k_{\perp})}{\partial \theta_j}(\text{SNR})^2.\\
+* `FisherAnalysis.py` - Computes the covariance matrix and creates triangle plots of 2D marginalized error ellipses and 1D marginalized Gaussians.  Can combine Fisher matrices to compare experiments.
 
-Here, the signal-to-noise ratio (SNR) is computed in a simulation from Cosmic Visions:
-- [SNR Data Cube from Cosmic Visions](http://www.phas.ubc.ca/~richard/sn_lowz_expA_50K.h5)
-- [Cosmic Visions Fisher repo](https://github.com/radiohep/CVFisher)
+* `S4Fisher.py`: Gets CMB-S4 Fisher matrix for comparison to 21cm experiments.  
 
-`fisher_analysis.py` - Computes the covariance matrix and creates triangle plots of 2D marginalized error ellipses and 1D marginalized Gaussians.  Can combine Fisher matrices to compare experiments.
+* `ClassWrap.py`: Wrapper for the Boltzmann code CLASS.
+
+* `CAMBWrap.py`: Wrapper for the Boltzmann code CAMB.
+
+By default, the signal-to-noise ratio (SNR) for the Fisher Matrix is computed in a simulation from Cosmic Visions:
+* [SNR Data Cube from Cosmic Visions](http://www.phas.ubc.ca/~richard/sn_lowz_expA_50K.h5)
+* [Cosmic Visions Fisher repo](https://github.com/radiohep/CVFisher)
 
 
-`fisherS4_pickler.py` Takes the CMBS4 Fisher matrix given in 'fisherS4.txt' and creates the pickle file 'fisherS4_matrix.p'.  This is used in fisher_analysis.py.
 
-## Requirements
-- numpy
-- scipy
-- matplotlib
-- SNR data cube mentioned above and h5py to read it into module
-- pickle
-- [CLASS code and its python wrapper classy](http://class-code.net/)
