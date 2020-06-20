@@ -1,8 +1,8 @@
 # Fisher21cm
 
-| Fisher21cm | Fisher forecast for a general 21cm experiment. |
+| Fisher21cm:| Fisher forecast for a general 21cm experiment |
 |------------|------------------------------------------------|
-| Authors    | Evan J. Arena and Anze Slosar                  |
+| Author:    | Evan J. Arena and Anze Slosar                  |
 
 * (c) Evan J. Arena (Drexel University Department of Physics), 2020.
 * For questions, please email `evan.james.arena@drexel.edu.`
